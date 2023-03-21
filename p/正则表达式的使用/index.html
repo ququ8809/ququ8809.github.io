@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='正则的常用语法'>
+<title>正则表达式的使用</title>
+
+<link rel='canonical' href='https://example.com/p/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E4%BD%BF%E7%94%A8/'>
+
+<link rel="stylesheet" href="/scss/style.min.8191399262444ab68b72a18c97392f5349be20a1615d77445be51e974c144cff.css"><meta property='og:title' content='正则表达式的使用'>
+<meta property='og:description' content='正则的常用语法'>
+<meta property='og:url' content='https://example.com/p/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E4%BD%BF%E7%94%A8/'>
+<meta property='og:site_name' content='ququ'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='regex' /><meta property='article:tag' content='re' /><meta property='article:published_time' content='2022-08-20T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2022-08-20T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="正则表达式的使用">
+<meta name="twitter:description" content="正则的常用语法">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hud48b8aea2ab712335a41d7e24811c590_54286_300x0_resize_box_3.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🌞</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">ququ</a></h1>
+            <h2 class="site-description">它善于飞，却不执着于飞。</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/CaiJimmy/hugo-theme-stack'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>链接</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="https://example.com/en/" >English</option>
+                        
+                            <option value="https://example.com/" selected>中文</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li>
+      <ol>
+        <li>
+          <ol>
+            <li><a href="#通配符">通配符</a></li>
+            <li><a href="#字符集">字符集</a></li>
+            <li><a href="#重复元字符">重复元字符</a></li>
+            <li><a href="#位置元字符">位置元字符</a></li>
+            <li><a href="#其他元字符">其他元字符</a></li>
+            <li><a href="#转义符号">转义符号</a></li>
+            <li><a href="#典型例子">典型例子</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/python/" style="background-color: #2a9d8f; color: #fff;">
+                Python
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E4%BD%BF%E7%94%A8/">正则表达式的使用</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            正则的常用语法
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Aug 20, 2022</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 5 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>正则表达式，如果是匹配多次，第一次匹配到了，第二次匹配的时候是从剩下的字符从新开始匹配。</p>
+<h4 id="通配符">通配符</h4>
+<p>通配符 <strong>.</strong> 可以匹配任何除换行符以外的字符，有且只能匹配一个字符，不能多也不能少。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">ret</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&#34;.&#34;</span><span class="p">,</span> <span class="s2">&#34;a,b,c,d,e&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 结果</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;a&#39;, &#39;,&#39;, &#39;b&#39;, &#39;,&#39;, &#39;c&#39;, &#39;,&#39;, &#39;d&#39;, &#39;,&#39;, &#39;e&#39;]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>全部都匹配到了，返回结果是一个数组</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">ret</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&#34;a.b&#34;</span><span class="p">,</span> <span class="s2">&#34;a,b,c,d,e,ab,abb,a</span><span class="se">\t</span><span class="s2">b,a</span><span class="se">\n</span><span class="s2">b&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 结果</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;a,b&#39;, &#39;abb&#39;, &#39;a\tb&#39;]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>匹配到了三个结果</p>
+<h4 id="字符集">字符集</h4>
+<p>字符集<code>[]</code>多选一的意思，表示匹配<code>[]</code>里面的其中一个，也是有且只能匹配一个字符，不能多，也不能少。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">ret</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&#34;[ace]&#34;</span><span class="p">,</span> <span class="s2">&#34;a,b,c,d,e&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 结果</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;a&#39;, &#39;c&#39;, &#39;e&#39;]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>匹配到了三个结果。第一次从字符集里面取出a匹配一遍，看有哪些是符号条件的，第二次从字符集里面取出c匹配，等所以字符集里面的字符都匹配一遍，把结果合并。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="n">ret</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&#34;a[bce]f&#34;</span><span class="p">,</span> <span class="s2">&#34;af,abf,abbf,acef,aef,abf&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 结果</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;abf&#39;, &#39;aef&#39;, &#39;abf&#39;]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>匹配到了三个结果，第一次用abf匹配，找到所有结果。第二次匹配的字符串是截取后的，类似于split函数把字符串通过abf分段，然后再用acf去匹配每一段。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="n">ret</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&#34;[0123456789]&#34;</span><span class="p">,</span> <span class="s2">&#34;a,b,2,d,c,8,B,C,F&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 结果</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;2&#39;, &#39;8&#39;]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>匹配所有的数字，要注意字符集<code>[]</code>每次只能取一个字符用来匹配。<code>[0123456789]</code>写起来有些麻烦，可以用<code>[0-9]</code>简写，还可以用 <code>\d</code>简写表示，都表示一个意思，匹配所有的数字。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="n">ret</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&#34;[0-9a-zA-Z]&#34;</span><span class="p">,</span> <span class="s2">&#34;a,b,2,d,c,8,B,C,F&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 结果</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;a&#39;, &#39;b&#39;, &#39;2&#39;, &#39;d&#39;, &#39;c&#39;, &#39;8&#39;, &#39;B&#39;, &#39;C&#39;, &#39;F&#39;]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>匹配所有的数字和大小写字母，<code>[0-9a-zA-Z]</code>一般也可以简写成<code>\w</code> ，<code>\w</code>表示匹配所有的大小写字母和数字和下划线<code>_</code>。</p>
+<h4 id="重复元字符">重复元字符</h4>
+<p>重复相关的元字符 <code>*</code>,<code>+</code>,<code>?</code>,<code>{}</code>是用来修饰字符集或者通配符的，默认都是贪婪匹配的，贪婪匹配每次匹配会匹配最多的符合条件的字符。</p>
+<ol>
+<li>
+<p><code>+</code>表示重复1-多次，结果最少要匹配成功1次</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="n">ret</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;\d+&#34;</span><span class="p">,</span> <span class="s2">&#34;a,b,23355,d,6,88888888&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 结果</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;23355&#39;, &#39;6&#39;, &#39;88888888&#39;]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果要取消贪婪匹配，可以在重复元字符后面加 <code>?</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="n">ret</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;\d+?&#34;</span><span class="p">,</span> <span class="s2">&#34;a,b,23355,d,6,88888888&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 结果</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;2&#39;, &#39;3&#39;, &#39;3&#39;, &#39;5&#39;, &#39;5&#39;, &#39;6&#39;, &#39;8&#39;, &#39;8&#39;, &#39;8&#39;, &#39;8&#39;, &#39;8&#39;, &#39;8&#39;, &#39;8&#39;, &#39;8&#39;]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><code>*</code>表示重复0-多次，最少匹配成功0次，可以匹配不成功，也就是匹配的结果可以为空。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="n">ret</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;\d*&#34;</span><span class="p">,</span> <span class="s2">&#34;a,b,23355,d,6,88888888&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 结果</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;23355&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;6&#39;, &#39;&#39;, &#39;88888888&#39;, &#39;&#39;]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>可以看到结果有空的字符串。可以这么理解，当匹配字符串下标为0的a时，没匹配上，但是因为<code>*</code>是可以匹配0次到多次，所以这次匹配会返回一个&quot;&ldquo;空的字符，然后下标右移一位，继续下一次的匹配。</p>
+</li>
+<li>
+<p><code>{n}</code>表示匹配固定的n个字符长度。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="n">ret</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&#34;\w</span><span class="si">{6}</span><span class="s2">&#34;</span><span class="p">,</span> <span class="s2">&#34;apple,bananaq,orange,melon&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 结果</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;banana&#39;, &#39;orange&#39;]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>匹配六个字符长度的字符串，字符串是由字母，数字或下划线组成。也可以<code>{m,n}</code>表示匹配m到n次，<code>{m,}</code>表示至少匹配m次</p>
+</li>
+<li>
+<p><code>?</code>匹配0次或者1次</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="n">ret</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&#34;abc?&#34;</span><span class="p">,</span> <span class="s2">&#34;abc,abcc,abe,ab&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 结果</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;abc&#39;, &#39;abc&#39;, &#39;ab&#39;, &#39;ab&#39;]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意重复元字符<code>?</code>修饰的是字符<code>c</code>。如果要取消贪婪匹配，可以在<code>?</code>后面再加一个<code>?</code>,也就是<code>abc??</code>。</p>
+<p><code>?</code>的两种用法要区分开来，如果是在重复元字符后面出现，表示取消贪婪 比如 <code>*?</code> <code> +?</code> <code> ??</code> 其他地方表示重复0或者1次。</p>
+</li>
+</ol>
+<h4 id="位置元字符">位置元字符</h4>
+<p>位置元字符有两个 <code>^</code>和<code>$</code>用来限制字符的位置。</p>
+<ol>
+<li>
+<p><code>^</code>表示起始位置，必须从起始下标0开始匹配。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="n">ret</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;^\d+&#34;</span><span class="p">,</span> <span class="s2">&#34;32,banana,255,orange,454456&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 结果</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;32&#39;]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>表示匹配字符串开头的连续数字。如果不是以数字开头就匹配不到</p>
+<p><code>^</code>还有一种用法，用在字符集<code>[]</code>里面，表示非</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="n">ret</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&#34;[^0-9]&#34;</span><span class="p">,</span> <span class="s2">&#34;a,b,2,d,c,8,B,C,F&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 结果</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;a&#39;, &#39;,&#39;, &#39;b&#39;, &#39;,&#39;, &#39;,&#39;, &#39;d&#39;, &#39;,&#39;, &#39;c&#39;, &#39;,&#39;, &#39;,&#39;, &#39;B&#39;, &#39;,&#39;, &#39;C&#39;, &#39;,&#39;, &#39;F&#39;]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>表示匹配所有非数字。</p>
+</li>
+<li>
+<p><code>$</code>表示结束位置，从字符串最后面开始匹配。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="n">ret</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;\d+$&#34;</span><span class="p">,</span> <span class="s2">&#34;32,banana,255,orange,454456&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 结果</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;454456&#39;]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>表示匹配以数字结尾的字符 ，如果不是以数字结尾就匹配不到。</p>
+</li>
+</ol>
+<h4 id="其他元字符">其他元字符</h4>
+<ol>
+<li>
+<p><code>()</code>模式捕获，具有提取指定数据的能力。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="n">ret</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;,(\w</span><span class="si">{5}</span><span class="s2">),&#34;</span><span class="p">,</span> <span class="s2">&#34;,apple,banana,peach,orange,melon,&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 结果</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;apple&#39;, &#39;peach&#39;, &#39;melon&#39;]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>对取到的值进行过滤，只取<code>()</code>里面的值。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="n">ret</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;,\w</span><span class="si">{5}</span><span class="s2">,&#34;</span><span class="p">,</span> <span class="s2">&#34;,apple,banana,peach,orange,melon,&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 结果</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;,apple,&#39;, &#39;,peach,&#39;, &#39;,melon,&#39;]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>对比下 不加<code>()</code>的结果,其的头尾都是有<code>,</code>逗号的。如果需要取消模式捕获，可以在左括号的后面加上<code>?:</code>,比如 <code>(?:\w{5})</code>。</p>
+</li>
+<li>
+<p><code>|</code>表示或的效果</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="n">ret</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;\w+@(?:163|qq).com&#34;</span><span class="p">,</span> <span class="s2">&#34;123dn@163.com,.....3n4n5@qq.com......nene.3nn56@gmail.com....enen&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 结果</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;123dn@163.com&#39;, &#39;3n4n5@qq.com&#39;]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>表示匹配所有的qq邮箱和163邮箱。<code>|</code>一般是跟<code>(?:)</code>一起使用。</p>
+</li>
+<li>
+<p>正向先行断言</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="n">ret</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&#34;\d+(?=PM)&#34;</span><span class="p">,</span> <span class="s2">&#34;Date: 4 Aug 3PM 6&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 结果</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;3&#39;]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>表示 只匹配数字后面是PM的数字  格式<code>(?=PM)</code></p>
+</li>
+<li>
+<p>负向先行断言</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="n">ret</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&#34;\d+(?!PM)&#34;</span><span class="p">,</span> <span class="s2">&#34;Date: 4 Aug 3PM 6&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 结果</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;4&#39;, &#39;6&#39;]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>只匹配数字后面不是PM的数字 格式<code>(?!PM)</code></p>
+</li>
+<li>
+<p>正向后行断言</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="n">ret</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&#34;(?&lt;=\$)\d+&#34;</span><span class="p">,</span><span class="s2">&#34;Product Code: 1064 Price: $5 ¥67&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 结果</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;5&#39;]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>匹配数字，数字需满足前面有$的数字 格式 <code>(?&lt;=\$)</code> 注意，如果是特殊符号记得加<code>\</code>，取消其特殊含义，<code>$</code>,<code>¥</code>等都需要加<code>\</code>。</p>
+</li>
+<li>
+<p>负向后行断言</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="n">ret</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&#34;(?&lt;!\$)\d+&#34;</span><span class="p">,</span> <span class="s2">&#34;Product Code: 1064 Price: $5&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 结果</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;1064&#39;]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>匹配数字，数字需满足前面不是 <code>$</code>的数字。</p>
+</li>
+</ol>
+<h4 id="转义符号">转义符号</h4>
+<p>转义符号 <code>\</code>有两种用法</p>
+<ol>
+<li>
+<p>将一些普通符号赋予特殊功能。</p>
+<ol>
+<li><code>\d</code>表示<code>[0-9]</code></li>
+<li><code>\D</code>表示 <code>[^0-9]</code></li>
+<li><code>\w</code>表示 <code>[0-9a-zA-Z_]</code></li>
+<li><code>\W</code>表示 <code>[^0-9a-zA-Z_]</code></li>
+<li><code>\s</code>表示 仅匹配空白字符</li>
+<li><code>\S</code>表示 匹配除空白外的字符</li>
+</ol>
+</li>
+<li>
+<p>将特殊符号(元字符)取消其特殊功能 <code>\*</code>   <code>\.</code>  <code>\+</code>  <code>\?</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="n">ret</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;\*&#34;</span><span class="p">,</span> <span class="s2">&#34;*** ??? ___&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 结果</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;*&#39;, &#39;*&#39;, &#39;*&#39;]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>匹配<code>*</code>号</p>
+</li>
+</ol>
+<h4 id="典型例子">典型例子</h4>
+<ol>
+<li>
+<p>例子1</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="n">text</span> <span class="o">=</span> <span class="s2">&#34;&lt;12&gt; &lt;xzy&gt; &lt;!@#$%&gt; &lt;1a!#e2&gt; &lt;&gt;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">ret</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&#34;&lt;.+&gt;&#34;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 结果</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;&lt;12&gt; &lt;xzy&gt; &lt;!@#$%&gt; &lt;1a!#e2&gt; &lt;&gt;&#39;]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意结果只有一个，返回的是一整个字符串。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="n">text</span> <span class="o">=</span> <span class="s2">&#34;&lt;12&gt; &lt;xzy&gt; &lt;!@#$%&gt; &lt;1a!#e2&gt; &lt;&gt;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">ret</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&#34;&lt;.+?&gt;&#34;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 结果</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;&lt;12&gt;&#39;, &#39;&lt;xzy&gt;&#39;, &#39;&lt;!@#$%&gt;&#39;, &#39;&lt;1a!#e2&gt;&#39;]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>匹配到了四个结果，跟上面的例子比，加了个<code>?</code>，表示取消贪婪匹配。</p>
+</li>
+<li>
+<p>例子2</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="n">text</span> <span class="o">=</span> <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">&lt;1
+</span></span></span><span class="line"><span class="cl"><span class="s2">2&gt; &lt;x
+</span></span></span><span class="line"><span class="cl"><span class="s2">zy&gt; &lt;!@#$%&gt; &lt;1a
+</span></span></span><span class="line"><span class="cl"><span class="s2">!#e2&gt; &lt;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 修饰模式 默认是re.I 意思是 .可以匹配换行符外的所有字符</span>
+</span></span><span class="line"><span class="cl"><span class="n">ret</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&#34;&lt;.*?&gt;&#34;</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">I</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 结果</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;&lt;!@#$%&gt;&#39;, &#39;&lt;&gt;&#39;]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果想要换行符 <code>.</code>也可以匹配到，可以设置修饰模式</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="n">text</span> <span class="o">=</span> <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">&lt;1
+</span></span></span><span class="line"><span class="cl"><span class="s2">2&gt; &lt;x
+</span></span></span><span class="line"><span class="cl"><span class="s2">zy&gt; &lt;!@#$%&gt; &lt;1a
+</span></span></span><span class="line"><span class="cl"><span class="s2">!#e2&gt; &lt;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 修饰模式 re.S 意思是 .可以匹配所有字符，包括换行符</span>
+</span></span><span class="line"><span class="cl"><span class="n">ret</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&#34;&lt;.*?&gt;&#34;</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">S</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 结果</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;&lt;1\n2&gt;&#39;, &#39;&lt;x\nzy&gt;&#39;, &#39;&lt;!@#$%&gt;&#39;, &#39;&lt;1a\n!#e2&gt;&#39;, &#39;&lt;&gt;&#39;]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>匹配到了五个结果，这个模式在爬虫里面比较用的到。</p>
+</li>
+</ol>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/regex/">regex</a>
+        
+            <a href="/tags/re/">re</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2022 - 
+        
+        2023 ququ
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
