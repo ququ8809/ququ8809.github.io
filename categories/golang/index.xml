@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Golang on ququ</title>
-        <link>https://example.com/categories/golang/</link>
+        <link>https://ququ8809.github.io/categories/golang/</link>
         <description>Recent content in Golang on ququ</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Mon, 20 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/categories/golang/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 20 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://ququ8809.github.io/categories/golang/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>单例模式</title>
-        <link>https://example.com/p/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</link>
+        <link>https://ququ8809.github.io/p/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</link>
         <pubDate>Mon, 20 Mar 2023 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/p/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</guid>
+        <guid>https://ququ8809.github.io/p/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</guid>
         <description>&lt;p&gt;​	单例有两种模式，一种是饿汉模式，另一种是懒汉模式&lt;/p&gt;
 &lt;h3 id=&#34;饿汉模式&#34;&gt;饿汉模式&lt;/h3&gt;
 &lt;p&gt;饿汉模式，在调用之前初始化，所以一般在init中初始化。&lt;/p&gt;
@@ -129,10 +129,10 @@
         </item>
         <item>
         <title>关键字iota</title>
-        <link>https://example.com/p/%E5%85%B3%E9%94%AE%E5%AD%97iota/</link>
+        <link>https://ququ8809.github.io/p/%E5%85%B3%E9%94%AE%E5%AD%97iota/</link>
         <pubDate>Mon, 20 Mar 2023 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/p/%E5%85%B3%E9%94%AE%E5%AD%97iota/</guid>
+        <guid>https://ququ8809.github.io/p/%E5%85%B3%E9%94%AE%E5%AD%97iota/</guid>
         <description>&lt;h3 id=&#34;案例1&#34;&gt;案例1&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -243,10 +243,10 @@
         </item>
         <item>
         <title>关键字defer</title>
-        <link>https://example.com/p/%E5%85%B3%E9%94%AE%E5%AD%97defer/</link>
+        <link>https://ququ8809.github.io/p/%E5%85%B3%E9%94%AE%E5%AD%97defer/</link>
         <pubDate>Tue, 20 Dec 2022 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/p/%E5%85%B3%E9%94%AE%E5%AD%97defer/</guid>
+        <guid>https://ququ8809.github.io/p/%E5%85%B3%E9%94%AE%E5%AD%97defer/</guid>
         <description>&lt;p&gt;defer延迟函数,在函数或方法执行完成的最后调用，defer函数可以有多个。defer函数执行过程可以分两部分，多个defer函数先按照先后顺序入栈，最后执行的时候从栈中取出执行，多个defer的执行顺序是先入后出的。&lt;/p&gt;
 &lt;h3 id=&#34;案例1&#34;&gt;案例1&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -367,10 +367,10 @@
         </item>
         <item>
         <title>channel的使用</title>
-        <link>https://example.com/p/channel%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+        <link>https://ququ8809.github.io/p/channel%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
         <pubDate>Thu, 01 Dec 2022 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/p/channel%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+        <guid>https://ququ8809.github.io/p/channel%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
         <description>&lt;h3 id=&#34;channel注意事项&#34;&gt;channel注意事项&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;

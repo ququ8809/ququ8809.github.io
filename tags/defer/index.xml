@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>defer on ququ</title>
-        <link>https://example.com/tags/defer/</link>
+        <link>https://ququ8809.github.io/tags/defer/</link>
         <description>Recent content in defer on ququ</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Tue, 20 Dec 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/tags/defer/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 20 Dec 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://ququ8809.github.io/tags/defer/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>关键字defer</title>
-        <link>https://example.com/p/%E5%85%B3%E9%94%AE%E5%AD%97defer/</link>
+        <link>https://ququ8809.github.io/p/%E5%85%B3%E9%94%AE%E5%AD%97defer/</link>
         <pubDate>Tue, 20 Dec 2022 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/p/%E5%85%B3%E9%94%AE%E5%AD%97defer/</guid>
+        <guid>https://ququ8809.github.io/p/%E5%85%B3%E9%94%AE%E5%AD%97defer/</guid>
         <description>&lt;p&gt;defer延迟函数,在函数或方法执行完成的最后调用，defer函数可以有多个。defer函数执行过程可以分两部分，多个defer函数先按照先后顺序入栈，最后执行的时候从栈中取出执行，多个defer的执行顺序是先入后出的。&lt;/p&gt;
 &lt;h3 id=&#34;案例1&#34;&gt;案例1&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;

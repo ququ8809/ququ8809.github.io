@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>emoji on ququ</title>
-        <link>https://example.com/tags/emoji/</link>
+        <link>https://ququ8809.github.io/tags/emoji/</link>
         <description>Recent content in emoji on ququ</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Tue, 05 Mar 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/tags/emoji/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 05 Mar 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://ququ8809.github.io/tags/emoji/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Emoji 支持</title>
-        <link>https://example.com/p/emoji-%E6%94%AF%E6%8C%81/</link>
+        <link>https://ququ8809.github.io/p/emoji-%E6%94%AF%E6%8C%81/</link>
         <pubDate>Tue, 05 Mar 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/p/emoji-%E6%94%AF%E6%8C%81/</guid>
-        <description>&lt;img src="https://example.com/p/emoji-%E6%94%AF%E6%8C%81/the-creative-exchange-d2zvqp3fpro-unsplash.jpg" alt="Featured image of post Emoji 支持" /&gt;&lt;p&gt;去露营啦! ⛺ 很快就回来.
+        <guid>https://ququ8809.github.io/p/emoji-%E6%94%AF%E6%8C%81/</guid>
+        <description>&lt;img src="https://ququ8809.github.io/p/emoji-%E6%94%AF%E6%8C%81/the-creative-exchange-d2zvqp3fpro-unsplash.jpg" alt="Featured image of post Emoji 支持" /&gt;&lt;p&gt;去露营啦! ⛺ 很快就回来.
 真开心! 😂&lt;/p&gt;
 
 &lt;p&gt;Emoji can be enabled in a Hugo project in a number of ways.&lt;/p&gt;
